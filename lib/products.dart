@@ -5,8 +5,9 @@ import './pages//product.dart';
 class Products extends StatelessWidget {
   final List<Map<String, String>> products;
   final Function deleteProduct;
+  final Function addProduct;
 
-  Products(this.products, {this.deleteProduct});
+  Products(this.products, this.addProduct, this.deleteProduct);
 
   Widget _buildProductItem(BuildContext context, int index) {
     return Card(
