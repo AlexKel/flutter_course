@@ -1,16 +1,65 @@
 import 'package:flutter/material.dart';
-import './products.dart';
 
-class AuthPage extends StatelessWidget {
+class AuthPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _AuthPageState();
+  }
+}
+
+class _AuthPageState extends State<AuthPage> {
+  String _emailValue;
+  String _passwordValue;
+  bool _termsAccepted = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('Login')),
-        body: Center(
-            child: RaisedButton(
-                child: Text('LOGIN'),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/');
-                })));
+        body: Container(
+            margin: EdgeInsets.all(10.0),
+            child: ListView(
+              children: <Widget>[
+                TextField(
+                  decoration: InputDecoration(labelText: 'Email'),
+                  keyboardType: TextInputType.emailAddress,
+                  onChanged: (String value) {
+                    setState(() {
+                      _emailValue = value;
+                    });
+                  },
+                ),
+                TextField(
+                  decoration: InputDecoration(labelText: 'Password'),
+                  obscureText: true,
+                  onChanged: (String value) {
+                    setState(() {
+                      _passwordValue = value;
+                    });
+                  },
+                ),
+                SwitchListTile(
+                  value: _termsAccepted,
+                  onChanged: (bool value) {
+                    setState(() {
+                      _termsAccepted = value;
+                    });
+                  },
+                  title: Text('Accept terms'),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                RaisedButton(
+                    color: Theme.of(context).accentColor,
+                    textColor: Colors.white,
+                    child: Text('LOGIN'),
+                    onPressed: () {
+                      print(_emailValue);
+                      print(_passwordValue);
+                      Navigator.pushReplacementNamed(context, '/products');
+                    })
+              ],
+            )));
   }
 }
