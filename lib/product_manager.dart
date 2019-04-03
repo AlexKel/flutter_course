@@ -6,7 +6,7 @@ import './product_control.dart';
 class ProductManager extends StatelessWidget {
   final List<Map<String, String>> products;
   final Function addProduct;
-  final FUnction deleteProduct;
+  final Function deleteProduct;
 
   ProductManager(this.products, this.addProduct, this.deleteProduct);
 
